@@ -42,17 +42,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List nums = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0'];
 
+//this code deals with the first grid
   void _gridOneOperators(String op) {
     setState(() {
+      //any numbers clicked are added to the calculation
       if (nums.contains(op)) {
          error = "";
         calculations += op;
       } else {
         switch (op) {
+          //if clear is clicked,then clear the calculations bar
           case 'C':
             calculations = "";
             error = "";
             break;
+            //if enter is clicked, then check edge cases before entering
           case '=':
             if (checkEnter()) {
               error = "";
@@ -64,8 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+//second grid deals with operators
   void _gridTwoOperators(String op) {
     setState(() {
+      //check edge cases before adding operators
       if(check2()){
          error = "";
         calculations += " $op ";
@@ -73,19 +79,25 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+//checks edge cases for enter button
   bool checkEnter() {
     //check if the last char in calc is a number 
+       if(calculations.isEmpty){
+      error = "Nothing to calculate";
+      return false;
+    }
+
     if(nums.contains(getLastChar())){
       error = "";
       return true;
     }
     //else return false
     //error message: can't end equation with an operator
-
     error = "Can't end equation with an operator";
     return false;
   }
 
+//checks edge cases
   bool check2 (){
     //if calculations is empty return false
     if (calculations.isEmpty){
@@ -105,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return false;
   }
 
+//enter button functionality
   void enter(String equation) {
     // Calculate and then return
     Parser parser = Parser();
@@ -114,6 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
     calculations = "";
   }
 
+//helper method to get last character in the calculation
   String getLastChar(){
     int calcLength = calculations.length;
     String lastNum = calculations.substring(calcLength - 1);
@@ -168,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
 
-          // Second Expanded for Numbers, Clear button, and Equqal button
+          // for Numbers, Clear button, and Equal button
           Expanded(
             flex: 3,
             child: Padding(
@@ -215,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
 
-          // Third GridView for operators
+          //Grid for operators 
           Container(
             height: 200, // Set the height as needed
             width: double.infinity,
