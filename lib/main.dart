@@ -171,10 +171,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     error,
                     style: TextStyle(fontSize: 40, color: text2),
                   ),
-                  Text(
+                  Container(
+                    width: 450,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: accent1,width: 3),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  child: Text(
                     calculations,
                     style: TextStyle(fontSize: 30, color: text),
-                  ),
+                  ),),
                   ],
                 ),
                 ),
