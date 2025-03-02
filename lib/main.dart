@@ -157,7 +157,6 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           // First Expanded for Calculations + Error messages
           Expanded(
-            flex: 1,
             child: Container(
               color: background2,
               child: SizedBox(
@@ -191,7 +190,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
           // for Numbers, Clear button, and Equal button
           Expanded(
-            flex: 3,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 10.0,
